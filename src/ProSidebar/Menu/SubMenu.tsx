@@ -17,6 +17,7 @@ export type Props = React.LiHTMLAttributes<HTMLLIElement> & {
   firstchild?: boolean;
   popperarrow?: boolean;
   onOpenChange?: (open: boolean) => void;
+  clickHandler?: () => void;
 };
 
 const SubMenu: React.ForwardRefRenderFunction<unknown, Props> = (
@@ -32,6 +33,7 @@ const SubMenu: React.ForwardRefRenderFunction<unknown, Props> = (
     firstchild,
     popperarrow,
     onOpenChange,
+    clickHandler,
     ...rest
   },
   ref,
@@ -106,7 +108,7 @@ const SubMenu: React.ForwardRefRenderFunction<unknown, Props> = (
       <div
         ref={referenceElement}
         className="pro-inner-item"
-        onClick={handleToggleSubMenu}
+        onClick={typeof clickHandler === 'undefined' ? handleToggleSubMenu : clickHandler}
         onKeyPress={handleToggleSubMenu}
         role="button"
         tabIndex={0}
